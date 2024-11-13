@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://b17sbjuj45l17"]
+
+[ext_resource type="Script" path="res://scripts/enemy_laser.gd" id="1_oottb"]
+[ext_resource type="Texture2D" uid="uid://bxrovs4syrsiq" path="res://kenney_space-shooter-redux/PNG/Lasers/laserRed08.png" id="2_lfrog"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kgvs1"]
+radius = 24.267
+
+[node name="enemy_laser" type="Area2D"]
+scale = Vector2(0.3, 0.3)
+script = ExtResource("1_oottb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_lfrog")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_kgvs1")

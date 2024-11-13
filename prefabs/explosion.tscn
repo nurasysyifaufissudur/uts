@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=3 uid="uid://bt5eu53joxapf"]
+
+[ext_resource type="Texture2D" uid="uid://fdi1p3h2cf5k" path="res://kenney_space-shooter-redux/PNG/Effects/star1.png" id="1_hn52q"]
+[ext_resource type="AudioStream" uid="uid://dlb43o3ir204a" path="res://kenney_space-shooter-redux/Bonus/sfx_laser1.ogg" id="2_ym6nn"]
+
+[sub_resource type="Gradient" id="Gradient_j1v5j"]
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_lqidu"]
+gradient = SubResource("Gradient_j1v5j")
+
+[sub_resource type="Gradient" id="Gradient_gdmwo"]
+offsets = PackedFloat32Array(0, 0.997942, 1)
+colors = PackedColorArray(1, 1, 1, 0.564706, 0.952675, 0.952675, 0.952675, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_31ga5"]
+gradient = SubResource("Gradient_gdmwo")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_guob0"]
+particle_flag_disable_z = true
+angle_min = -180.0
+angle_max = 180.0
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_min = 10.0
+initial_velocity_max = 100.0
+angular_velocity_min = -90.0
+angular_velocity_max = 90.0
+gravity = Vector3(0, 0, 0)
+color_ramp = SubResource("GradientTexture1D_31ga5")
+color_initial_ramp = SubResource("GradientTexture1D_lqidu")
+
+[node name="explosion" type="Node2D"]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_guob0")
+texture = ExtResource("1_hn52q")
+one_shot = true
+explosiveness = 1.0
+collision_base_size = 0.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_ym6nn")
+autoplay = true
